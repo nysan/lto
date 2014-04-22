@@ -7,7 +7,8 @@
 # dynamic library examples, but you don't need to use
 # "-static" in the names of your
 # object files or static libraries.
-CFLAGS="-flto -Wall -O4 -fno-exceptions -funwind-tables -finline-functions -fgnu89-inline -fno-keep-inline-functions"
+set -e
+CFLAGS="-flto -Wall -O3 -I./ -fno-exceptions -funwind-tables -finline-functions -fgnu89-inline -fno-keep-inline-functions"
 
 gcc $CFLAGS -c -o libhello-static.o libhello.c
 # 
@@ -34,3 +35,5 @@ gcc $CFLAGS -o  demo_gcc  hello.o -L. -lhello-static
 # Execute the program.
 
 ./demo_gcc
+
+objdump -D demo_gcc | less

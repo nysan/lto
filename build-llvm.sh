@@ -7,7 +7,7 @@ set -e
 # dynamic library examples, but you don't need to use
 # "-static" in the names of your
 # object files or static libraries.
-CFLAGS="-flto -O3 -Wall -fno-exceptions -funwind-tables -finline-functions -fgnu89-inline -fno-keep-inline-functions"
+CFLAGS="-O3 -flto -Wall -I./ -fno-exceptions -funwind-tables -finline-functions -fgnu89-inline -fno-keep-inline-functions"
 
 clang $CFLAGS -c -o libhello-static.o libhello.c
 
@@ -34,3 +34,5 @@ clang $CFLAGS -Wl,--as-needed  -o demo_llvm hello.o -L. -lhello-static
 # Execute the program.
 
 ./demo_llvm
+
+objdump -D demo_llvm | less 
